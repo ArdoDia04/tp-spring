@@ -22,7 +22,8 @@ public class CommentController {
     public Comment addComment(@PathVariable Long articleId,
                               @RequestBody Comment comment) {
 
-        Article article = articleRepo.findById(articleId).orElse(null);
+        Article article = articleRepo.findById(articleId)
+                .orElseThrow(() -> new RuntimeException("Article not found"));
 
         comment.setArticle(article);
 
